@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string[] products = (string[])ViewData["products"];
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démonstrations : Liste de produits</title>
+</head>
+<body>
+    <h1>Démonstrations d'utilisation de l'identifiant d'une liste de produits</h1>
+    <ul>
+        @for (int i = 0; i < products.Length; i++)
+        {
+            string product = products[i];
+            <li><a href="/Shop/Details/@i">@product</a></li>
+        }
+    </ul>
+</body>
+</html>

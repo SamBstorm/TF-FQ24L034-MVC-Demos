@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Démonstration : ViewData / ViewBag</title>
+    </head>
+    <body>
+        <h1>ViewData</h1>
+        <p>@ViewData["text"]</p>
+        @if(ViewData["id"] is null){
+            <p>Nous n'avons pas de paramètre 'id' dans notre URL.</p>
+        }
+        else{
+            <p>Voici l'id intercepté par mon controller provenant de l'URL : @ViewData["id"]</p>
+        }
+    </body>
+</html>

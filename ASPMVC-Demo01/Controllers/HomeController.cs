@@ -21,5 +21,12 @@ namespace ASPMVC_Demo01.Controllers
         {
             return View();
         }
+
+        public IActionResult Demo02(int? id)
+        {
+            ViewData["text"] = $"Voici un exemple de texte provenant directement du controller : {nameof(HomeController)}";
+            ViewData["id"] = id;
+            return View();
+        }
     }
 }
