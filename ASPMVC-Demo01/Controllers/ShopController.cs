@@ -23,8 +23,9 @@ namespace ASPMVC_Demo01.Controllers
                 if (id < 0) throw new ArgumentOutOfRangeException(nameof(id), "Indice ne peut être en dessous de 0");
                 if (id >= _products.Length) throw new ArgumentOutOfRangeException(nameof(id), $"Indice ne peut être au dessus de {_products.Length - 1}");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                TempData["errorMessage"] = ex.Message;
                 return RedirectToAction(nameof(Index));
             }
             Title = $"Vue détaillée de {_products[id]}";
