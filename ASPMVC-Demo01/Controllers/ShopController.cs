@@ -5,9 +5,14 @@ namespace ASPMVC_Demo01.Controllers
     public class ShopController : Controller
     {
         private string[] _products = ["Tickets de loterie", "Montre", "Vin", "Parfum", "Chaussettes"];
+        [ViewData]
+        public string Title { get; set; }
+        [ViewData]
+        public string[] Products { get { return _products; } }
         public IActionResult Index()
         {
-            ViewData["products"] = _products;
+            Title = "Liste des produits";
+            //ViewData["products"] = _products;
             return View();
         }
 
@@ -22,7 +27,7 @@ namespace ASPMVC_Demo01.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
+            Title = $"Vue détaillée de {_products[id]}";
             ViewData["product"] = _products[id];
             return View();
         }
