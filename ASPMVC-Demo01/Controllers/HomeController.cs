@@ -1,3 +1,5 @@
+using ASPMVC_Demo01.Handlers.Validations;
+using ASPMVC_Demo01.Models;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -56,7 +58,40 @@ namespace ASPMVC_Demo01.Controllers
             SaveCurrentUrl(HttpContext.Request.GetDisplayUrl());
             return View();
         }
+        [HttpGet]
+        public IActionResult Demo06()
+        {
+            return View();
+        }
+        [HttpPost]
+        /*public IActionResult Demo06(IFormCollection form)
+        {
+            throw new NotImplementedException();
+        }*/
+        /*public IActionResult Demo06(string subject, string firstname, string lastname, DateOnly date, TimeOnly time)
+        {
+            throw new NotImplementedException();
+        }*/
+        public IActionResult Demo06(Demo06Form form) {
+            /*if(form.Time < new TimeOnly(8,0) || form.Time > new TimeOnly(19, 30))
+            {
+                ModelState.AddModelError(nameof(form.Time), $"Attention : L'heure {form.Time.ToShortTimeString()} n'est pas compris entre 8:00 et 19:30.");
+            }*/
+            /*ValidationsExtension.ValidateTime(ModelState, form.Time, nameof(form.Time));*/
+            ModelState
+                .ValidateTime(form.Time,nameof(form.Time), new TimeOnly(7,0), new TimeOnly(23,0))
+                .ValidateDate(form.Date, nameof(form.Date));
+            if (ModelState.IsValid)
+            {
+                //Envoyer donnée dans la DB
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
 
+                return View();
+            }
+        }
         private void SaveCurrentUrl(string url)
         {
             if (TempData.ContainsKey("URLs"))
