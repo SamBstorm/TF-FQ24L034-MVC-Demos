@@ -1,4 +1,6 @@
-﻿@*
+﻿@using ASPMVC_Demo01.Models
+@model Product
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -12,6 +14,15 @@
 </head>
 <body>
     <h1>Démonstrations d'utilisation de l'identifiant d'une liste de produits</h1>
-    <h2>Vue détaillée de @ViewData["product"]</h2>
+    <h2>Vue détaillée de @Model.Name</h2>
+    <p><strong>@Model.Price.ToString("C")</strong></p>
+    @if(Model.IsAvailable())
+    {
+        <p>En stock</p>
+    }
+    else
+    {
+        <p>Plus disponible...</p>
+    }
 </body>
 </html>

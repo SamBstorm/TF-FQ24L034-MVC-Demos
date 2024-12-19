@@ -7,8 +7,4 @@
     <RootNamespace>ASPMVC_Demo01</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

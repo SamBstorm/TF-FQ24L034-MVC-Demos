@@ -1,9 +1,9 @@
-﻿@*
+﻿@using ASPMVC_Demo01.Models;
+@model IEnumerable<ProductListItem>;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    //string[] products = (string[])ViewData["products"];
-    string[] products = (string[])ViewData["Products"];
 }
 <!DOCTYPE html>
 <html lang="fr">
@@ -21,10 +21,13 @@
     }
     <h1>Démonstrations d'utilisation de l'identifiant d'une liste de produits</h1>
     <ul>
-        @for (int i = 0; i < products.Length; i++)
-        {
-            string product = products[i];
-            <li><a href="/Shop/Details/@i">@product</a></li>
+        @{
+            int i = 0;
+            foreach (ProductListItem item in Model)
+            {
+                <li><a href="/Shop/Details/@i">@item.Name - @item.Price.ToString("C")</a></li>
+                i++;
+            }
         }
     </ul>
 </body>

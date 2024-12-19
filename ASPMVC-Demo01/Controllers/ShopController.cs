@@ -1,19 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ASPMVC_Demo01.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ASPMVC_Demo01.Controllers
 {
     public class ShopController : Controller
     {
-        private string[] _products = ["Tickets de loterie", "Montre", "Vin", "Parfum", "Chaussettes"];
+        private Product[] _products = [
+            new Product(){Name = "Tickets de loterie", Price = 2.5M, Quantity=100 },
+            new Product(){Name = "Montre", Price = 250M, Quantity = 10},
+            new Product(){Name = "Vin", Price = 15M, Quantity = 75 },
+            new Product(){Name = "Parfum", Price = 50M, Quantity = 25 },
+            new Product(){Name = "Chaussettes", Price = 7.5M, Quantity = 0 }];
         [ViewData]
         public string Title { get; set; }
-        [ViewData]
-        public string[] Products { get { return _products; } }
         public IActionResult Index()
         {
             Title = "Liste des produits";
-            //ViewData["products"] = _products;
-            return View();
+            IEnumerable<ProductListItem> model = _products
+                .Select(p => new ProductListItem() { Name = p.Name, Price = p.Price}) ;
+            return View(model);
         }
 
         public IActionResult Details(int id)
@@ -28,9 +33,9 @@ namespace ASPMVC_Demo01.Controllers
                 TempData["errorMessage"] = ex.Message;
                 return RedirectToAction(nameof(Index));
             }
-            Title = $"Vue détaillée de {_products[id]}";
-            ViewData["product"] = _products[id];
-            return View();
+            Product model = _products[id];
+            Title = $"Vue détaillée de {model.Name}";
+            return View(model);
         }
     }
 }
