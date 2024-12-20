@@ -79,7 +79,7 @@ namespace ASPMVC_Demo01.Controllers
             }*/
             /*ValidationsExtension.ValidateTime(ModelState, form.Time, nameof(form.Time));*/
             ModelState
-                .ValidateTime(form.Time,nameof(form.Time), new TimeOnly(7,0), new TimeOnly(23,0))
+                .ValidateTime(form.Time,nameof(form.Time), new TimeOnly(8,0), new TimeOnly(19,30))
                 .ValidateDate(form.Date, nameof(form.Date));
             if (ModelState.IsValid)
             {
@@ -89,6 +89,25 @@ namespace ASPMVC_Demo01.Controllers
             else
             {
 
+                return View();
+            }
+        }
+        
+        public IActionResult Demo07()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Demo07(Demo07Form form)
+        {
+            try
+            {
+                if (!ModelState.IsValid) throw new InvalidOperationException();
+                return RedirectToAction(nameof(Index));
+            }
+            catch(Exception ex)
+            {
                 return View();
             }
         }

@@ -16,12 +16,13 @@
     <!-- nav>ul>li*3>a{Démonstration $} -->
     <nav>
         <ul>
-            <li><a href="/home/demo01">Démonstration 1</a></li>
-            <li><a href="/home/demo02">Démonstration 2</a></li>
-            <li><a href="/Shop">Démonstration 3 : Shop</a></li>
-            <li><a href="/home/demo04">Démonstration 4</a></li>
-            <li><a href="/home/demo05">Démonstration 5</a></li>
-            <li><a href="/home/demo06">Démonstration 6</a></li>
+            <li>@Html.ActionLink("Démonstration 1","demo01")</li>
+            <li>@Html.ActionLink("Démonstration 2", "demo02")</li>
+            <li>@Html.ActionLink("Démonstration 3 - Shop", "index", "shop")</li>
+            <li>@Html.ActionLink("Démonstration 4", "demo04")</li>
+            <li>@Html.ActionLink("Démonstration 5", "demo05")</li>
+            <li>@Html.ActionLink("Démonstration 6", "demo06")</li>
+            <li>@Html.ActionLink("Démonstration 7", "demo07")</li>
         </ul>
     </nav>
 </body>
